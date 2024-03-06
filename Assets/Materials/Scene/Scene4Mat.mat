@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DragNoteMaterial3
-  m_Shader: {fileID: 4800000, guid: 6d16e6cbb5b721c468614d6ff29c72c8, type: 3}
+  m_Name: Scene4Mat
+  m_Shader: {fileID: 4800000, guid: a6eb1644451ff9b4691e72ede0b4695b, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -40,13 +40,25 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MainTex:
+    - _Gradient:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GradientTexture:
+        m_Texture: {fileID: 2800000, guid: 0199abdf6f2494348854c794563cae6c, type: 3}
+        m_Scale: {x: 3, y: 0.95}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 5b33a22bcd8002f4aa743b306129ad3a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Noise:
+        m_Texture: {fileID: 2800000, guid: 8c8f594f0e71cbf49b6002336ead5e01, type: 3}
+        m_Scale: {x: 5, y: 5}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
@@ -58,29 +70,31 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.6
+    - _BlendAmount: 0.96
+    - _BoxWidth: 0.09
+    - _Brightness: 0.1
     - _BumpScale: 1
-    - _CeilDensity: 3.14
+    - _CeilHeight: -0.91
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _GroundHeight: 0.58
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RippleSpeed: 200
-    - _Slimness: 3.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _SphereWidth: 0.07
     - _SrcBlend: 1
+    - _TimeSpeed: 4
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.60839736, g: 0, b: 0.8207547, a: 1}
-    - _Color: {r: 1, g: 0.97600585, b: 0.25157225, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RippleColor: {r: 0, g: 0.11152793, b: 9.494641, a: 1}
+    - _MixColor: {r: 52.32496, g: 0, b: 126.50718, a: 1}
   m_BuildTextureStacks: []
