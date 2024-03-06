@@ -193,7 +193,7 @@ public class GameController : MonoBehaviour
                 }
                 if (component is SinNote sn)
                 {
-                    sn.SetNoteData(beatTime, 0.3f, startPos, targetPos, secondsPerBeat);
+                    sn.SetNoteData(beatTime, 0.6f, startPos, targetPos, secondsPerBeat);
                     sn.CalculateSinData();
                 }
             }
@@ -225,8 +225,7 @@ public class GameController : MonoBehaviour
                 }
                 if (component is SinNote sn)
                 {
-                    float rndSpeed = Random.Range(0.85f, 1.2f);
-                    sn.SetNoteData(beatTime, rndSpeed, startPos, targetPos, secondsPerBeat);
+                    sn.SetNoteData(beatTime, 0.3f, startPos, targetPos, secondsPerBeat);
                     sn.CalculateSinData();
                 }
             }
