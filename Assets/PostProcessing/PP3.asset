@@ -22,7 +22,7 @@ MonoBehaviour:
     defaultState: 1
   intensity:
     overrideState: 1
-    value: 0.25
+    value: 0.63
   fastMode:
     overrideState: 1
     value: 1
@@ -36,11 +36,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
-  m_Name: PP1
+  m_Name: PP3
   m_EditorClassIdentifier: 
   settings:
   - {fileID: 7635067779695101649}
   - {fileID: -3490048392707665284}
+  - {fileID: 6163558560529613370}
+--- !u!114 &6163558560529613370
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74ddb4c9195a64945b34b4ec412099f5, type: 3}
+  m_Name: PixelEffect
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  pixelAmount:
+    overrideState: 1
+    value: 861
 --- !u!114 &7635067779695101649
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -59,10 +79,10 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.45
+    value: 0.78
   threshold:
     overrideState: 1
-    value: 0.7
+    value: 0.9
   softKnee:
     overrideState: 1
     value: 1
@@ -77,7 +97,7 @@ MonoBehaviour:
     value: 0
   color:
     overrideState: 1
-    value: {r: 0, g: 1.0379244, b: 1.5788343, a: 1}
+    value: {r: 1.319508, g: 0, b: 1.077539, a: 1}
   fastMode:
     overrideState: 1
     value: 1

@@ -1,13 +1,14 @@
-Shader "Custom/Scene2Shader"
+Shader "Custom/Scene3Shader"
 {
     Properties
     {
         _MainTex("Texture", 2D) = "white" {}
-        _BoxWidth("BoxWidth", Float) = 0.1
+        _SphereWidth("SphereWidth", Float) = 0.1
         _Brightness("Brightness", Float) = 0.01
         _GroundHeight("GroundHeight", Float) = 0.01
         _BlendAmount("BlendAmount", Float) = 0.01
         _TimeSpeed("TimeSpeed", Float) = 10.0
+        _MixColor("MixColor", Color) = (1, 1, 1, 1)
     }
     SubShader
     {
@@ -37,11 +38,12 @@ Shader "Custom/Scene2Shader"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
-            float _BoxWidth;
+            float _SphereWidth;
             float _Brightness;
             float _BlendAmount;
             float _GroundHeight;
             float _TimeSpeed;
+            float4 _MixColor;
 
             v2f vert(appdata v)
             {
@@ -69,15 +71,18 @@ Shader "Custom/Scene2Shader"
                 float3 d = abs(p) - b;
                 return min(max(d.x, max(d.y, d.z)), 0.0) + length(max(d, 0.0));
             }
-
-            float map(float3 pt)
+            float sdSphere(float3 p, float s)
             {
-                pt.z += _Time.x * _TimeSpeed;
-
+                return length(p) - s;
+            }
+            float map(float3 originalpt, float3 pt)
+            {
+                pt.y -= _Time.x * _TimeSpeed;
+                pt.x += sin(_Time.x * _TimeSpeed * 20) * 0.2;
                 float3 q = pt;
                 q = frac(q) - 0.5; // Space repetition
-                float box = sdBox(q, float3(_BoxWidth, _BoxWidth, _BoxWidth)); // Cube SDF
-                float ground = pt.y + _GroundHeight; // Ground SDF
+                float box = sdSphere(q, _SphereWidth); // Sphere SDF
+                float ground = originalpt.y + _GroundHeight; // Ground SDF
                 return smin(ground, box, _BlendAmount);
             }
 
@@ -97,15 +102,15 @@ Shader "Custom/Scene2Shader"
                 for (int i = 0; i < 100; ++i)
                 {
                     float3 pt = ro + rd * distSoFar;
-                    float dist = map(pt);
+                    float dist = map(pt, pt);
                     distSoFar += dist;
                     if (dist < 0.01 || distSoFar > 200) break;
                 }
-                col = fixed4(distSoFar * _Brightness,distSoFar * _Brightness, distSoFar * _Brightness, 1);
-                fixed4 invCol = fixed4(1.0 - col.rgb, col.a);
-                fixed4 blackColor = fixed4(0, 0, 0, 1);
-                invCol = lerp(invCol, blackColor, 0.5);
-                return invCol;
+                col = fixed4(distSoFar * _Brightness, distSoFar * _Brightness, distSoFar * _Brightness, 1);
+                fixed4 newCol = lerp(col, _MixColor, 0.5);
+                return newCol;
+
+
             }
             ENDCG
         }
