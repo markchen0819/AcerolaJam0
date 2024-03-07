@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BounceNoteMat
+  m_Name: SinNoteMat
   m_Shader: {fileID: 4800000, guid: 6d16e6cbb5b721c468614d6ff29c72c8, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -79,8 +79,8 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 2, g: 1.9058824, b: 0, a: 1}
+    - _BaseColor: {r: 0, g: 0.28301883, b: 0.047169827, a: 1}
     - _Color: {r: 1, g: 0.97600585, b: 0.25157225, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RippleColor: {r: 7.999999, g: 2.2265666, b: 0, a: 1}
+    - _RippleColor: {r: 0, g: 7.999999, b: 3.0147738, a: 1}
   m_BuildTextureStacks: []
