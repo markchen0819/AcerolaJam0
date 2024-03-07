@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public AudioSource audioSource;
+    public SceneEventSequencer sceneEventSequencer;
 
     public GameObject TrackBase; // parent
     public GameObject[] starts;
@@ -24,6 +25,8 @@ public class GameController : MonoBehaviour
     private int beatCount = 0;
     [SerializeField]
     private float secondsPerBeat = 0.0f;
+    public float GetSecondsPerBeat() { return secondsPerBeat; }
+    public int GetBeatToSkipBegin() { return beatToSkipBegin; }
 
     // Note Generation
     public GameObject NormalNotePrefab;
@@ -59,6 +62,8 @@ public class GameController : MonoBehaviour
         // Track note count
         nextNoteTiming = (beatToSkipBegin+1) * secondsPerBeat;
 
+        sceneEventSequencer.Init(this);
+        sceneEventSequencer.CreateSceneEvents();
     }
 
     private void Start()
