@@ -64,8 +64,9 @@ Shader "Unlit/RefractionShader"
                 float2 shapeUV = i.uv;
                 shapeUV.y += _Time.x * _TimeSpeed;
 
-                col.a = tex2D(_ShapeTex, shapeUV).r * 0.1;
-                col.rgb = fixed3(1.0, 1.0, 1.0) - col.rgb;
+                col.a = tex2D(_ShapeTex, shapeUV).r ;
+                //col.rgb = fixed3(1.0, 1.0, 1.0) - col.rgb;
+                col.rgb -= fixed3(0.02, 0.02, 0.02);
                 return col;
             }
             ENDCG
