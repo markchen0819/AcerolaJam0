@@ -5,10 +5,16 @@ Shader "Custom/Scene5Shader"
         _MainTex("Texture", 2D) = "white" {}
         _TimeSpeed("TimeSpeed", Float) = 0.005
         _ParticleSpeed("ParticleSpeed", Float) = 0.0008
+        _Alpha("Alpha", Float) = 1.0
     }
     SubShader
     {
-        Tags { "RenderType" = "Opaque" }
+        Tags
+        {
+            "Queue" = "Transparent"
+            "RenderType" = "Transparent"
+        }
+        Blend SrcAlpha OneMinusSrcAlpha
         LOD 100
 
         Pass
@@ -36,6 +42,7 @@ Shader "Custom/Scene5Shader"
             float4 _MainTex_ST;
             float _ParticleSpeed;
             float _TimeSpeed;
+            float _Alpha;
 
             v2f vert(appdata v)
             {
@@ -89,7 +96,7 @@ Shader "Custom/Scene5Shader"
 
                     dragAmount += .01;
                 }
-                return float4(col, 1.0);
+                return float4(col, _Alpha);
             }
             ENDCG
         }

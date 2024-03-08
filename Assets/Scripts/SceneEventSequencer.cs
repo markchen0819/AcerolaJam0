@@ -75,7 +75,9 @@ public class SceneEventSequencer : MonoBehaviour
 
         events.Enqueue(new SceneEvent((144 + beatToSkipBegin) * secondsPerBeat + offset, () => { changeBackgroundEvent.Execute(4); }));
         events.Enqueue(new SceneEvent((176 + beatToSkipBegin) * secondsPerBeat + offset, () => { trackGrooveEvent.Execute(true); }));
+        events.Enqueue(new SceneEvent((176 + beatToSkipBegin) * secondsPerBeat + offset, () => { changeBackgroundEvent.Execute(5); }));
         events.Enqueue(new SceneEvent((224 + beatToSkipBegin) * secondsPerBeat + offset, () => { trackGrooveEvent.Execute(false); }));
+        events.Enqueue(new SceneEvent((224 + beatToSkipBegin) * secondsPerBeat + offset, () => { changeBackgroundEvent.Execute(0); }));
     }
 
 

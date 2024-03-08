@@ -58,4 +58,9 @@ public class NoteBase : MonoBehaviour
         hasCollided = true;
     }
 
+    public bool HasCollided()
+    {
+        return hasCollided;
+    }
+
 }

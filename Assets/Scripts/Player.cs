@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int positionIndex = 1;
     private float zOffset = -0.95f;
+    [SerializeField]
+    int hitCount = 0;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -37,6 +39,10 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Collide with " + collider.gameObject.name);
         NoteBase n = collider.gameObject.GetComponent<NoteBase>();
-        n.SetCollided();
+        if(!n.HasCollided())
+        {
+            n.SetCollided();
+            ++hitCount;
+        }
     }
 }
