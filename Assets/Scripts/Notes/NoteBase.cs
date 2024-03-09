@@ -25,7 +25,10 @@ public class NoteBase : MonoBehaviour
     {
         this.gc = gc;
     }
-
+    public void OverrideSpeed(float noteSpeed)
+    {
+        this.noteSpeed = noteSpeed;
+    }
     public virtual void SetNoteData(float noteTime, float noteSpeed,
         Vector3 start, Vector3 target, float secondsPerBeat)
     {

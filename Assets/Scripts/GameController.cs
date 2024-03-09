@@ -54,6 +54,8 @@ public class GameController : MonoBehaviour
     private float endTime = 0.0f;
     private int hitCount = 0;
 
+    private List<NoteBase> timingGroup1 = new List<NoteBase>();
+    private List<NoteBase> timingGroup2 = new List<NoteBase>();
     void Awake()
     {
         Application.targetFrameRate = 144;
@@ -234,6 +236,11 @@ public class GameController : MonoBehaviour
                 if (component is NormalNote)
                 {
                     component.SetNoteData(beatTime, 0.5f, startPos, targetPos, secondsPerBeat);
+
+                    if (noteIndex >= 226) 
+                    {
+                        timingGroup2.Add(component);
+                    }
                 }
                 if (component is FlashNote fn)
                 {
@@ -244,6 +251,10 @@ public class GameController : MonoBehaviour
                 {
                     bn.SetNoteData(beatTime, 0.2f, startPos, targetPos, secondsPerBeat);
                     bn.CalculateBounceData();
+                    if (noteIndex < 100) // 80~100
+                    {
+                        timingGroup1.Add(bn);
+                    }
                 }
                 if (component is DragNote dn)
                 {
@@ -259,6 +270,7 @@ public class GameController : MonoBehaviour
                 {
                     sn.SetNoteData(beatTime, 0.3f, startPos, targetPos, secondsPerBeat);
                     sn.CalculateSinData();
+
                 }
             }
             note.SetActive(false);
@@ -305,6 +317,16 @@ public class GameController : MonoBehaviour
     {
         this.hitCount = hitCount;
         gameUI.PlayHitUI(hitCount);
+    }
+
+    public List<NoteBase> GetTimingGroupOne()
+    {
+        return timingGroup1;
+    }
+
+    public List<NoteBase> GetTimingGroupTwo()
+    {
+        return timingGroup2;
     }
 
 

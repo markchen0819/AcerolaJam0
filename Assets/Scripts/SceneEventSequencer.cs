@@ -31,6 +31,7 @@ public class SceneEventSequencer : MonoBehaviour
     public TrackGrooveEvent trackGrooveEvent;
     public ChangeBackgroundEvent changeBackgroundEvent;
     public GlitchScreenEvent glitchScreenEvent;
+    public SpeedChangeEvent speedChangeEvent;
 
     private Queue<SceneEvent> events = new Queue<SceneEvent>();
 
@@ -59,14 +60,25 @@ public class SceneEventSequencer : MonoBehaviour
         float secondsPerBeat = gc.GetSecondsPerBeat();
         float beatToSkipBegin = gc.GetBeatToSkipBegin();
 
-     
-
+        // Normal
+        // Drag
         events.Enqueue(new SceneEvent((48 + beatToSkipBegin) * secondsPerBeat + offset, () => { changeBackgroundEvent.Execute(1); }));
+        // make sure not show on screen
+        events.Enqueue(new SceneEvent((72 + beatToSkipBegin) * secondsPerBeat + offset, () =>
+        {
+            speedChangeEvent.Execute(0.3f, 1.0f, 1.0f, gc.GetTimingGroupOne());
+        }));
+        // fast to slow in 
+        float duration = secondsPerBeat;
+        events.Enqueue(new SceneEvent((79 + beatToSkipBegin) * secondsPerBeat + offset, () =>
+        {
+            speedChangeEvent.Execute(duration, 1.0f, 0.2f, gc.GetTimingGroupOne());
+        }));
 
-
+        // Bounce
         events.Enqueue(new SceneEvent((80 + beatToSkipBegin) * secondsPerBeat + offset, () => { changeBackgroundEvent.Execute(2); }));
 
-
+        // Flash
         events.Enqueue(new SceneEvent((112 + beatToSkipBegin) * secondsPerBeat + offset, () => { changeBackgroundEvent.Execute(3); }));
         for (int i= 112; i<144; ++i)
         {
@@ -75,11 +87,24 @@ public class SceneEventSequencer : MonoBehaviour
         }
         events.Enqueue(new SceneEvent((143 + beatToSkipBegin) * secondsPerBeat + offset, glitchScreenEvent.Execute));
 
+        // Sin
         events.Enqueue(new SceneEvent((144 + beatToSkipBegin) * secondsPerBeat + offset, () => { changeBackgroundEvent.Execute(4); }));
+
+        // Mix
         events.Enqueue(new SceneEvent((176 + beatToSkipBegin) * secondsPerBeat + offset, () => { trackGrooveEvent.Execute(true); }));
         events.Enqueue(new SceneEvent((176 + beatToSkipBegin) * secondsPerBeat + offset, () => { changeBackgroundEvent.Execute(5); }));
         events.Enqueue(new SceneEvent((224 + beatToSkipBegin) * secondsPerBeat + offset, () => { trackGrooveEvent.Execute(false); }));
+        // Normal
+
         events.Enqueue(new SceneEvent((224 + beatToSkipBegin) * secondsPerBeat + offset, () => { changeBackgroundEvent.Execute(0); }));
+
+        // fast to slow in 
+        // dont share dutation due to closure
+        float duration2 = secondsPerBeat * (239.0f - 226.0f);
+        events.Enqueue(new SceneEvent((224 + beatToSkipBegin) * secondsPerBeat + offset, () =>
+        {
+            speedChangeEvent.Execute(duration2, 0.5f, 0.1f, gc.GetTimingGroupTwo());
+        }));
     }
 
 

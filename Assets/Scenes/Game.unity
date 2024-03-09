@@ -450,6 +450,7 @@ MonoBehaviour:
   trackGrooveEvent: {fileID: 1878947556}
   changeBackgroundEvent: {fileID: 1878947557}
   glitchScreenEvent: {fileID: 1878947558}
+  speedChangeEvent: {fileID: 1878947559}
 --- !u!1 &98346494
 GameObject:
   m_ObjectHideFlags: 0
@@ -4701,6 +4702,7 @@ GameObject:
   - component: {fileID: 1878947556}
   - component: {fileID: 1878947557}
   - component: {fileID: 1878947558}
+  - component: {fileID: 1878947559}
   m_Layer: 0
   m_Name: SceneEvents
   m_TagString: Untagged
@@ -4789,6 +4791,20 @@ MonoBehaviour:
   glitch: {fileID: 0}
   blockSize: 45
   displacementAmount: 0.5
+--- !u!114 &1878947559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878947553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db9c991ba91f7c04183a0e4a63da1d3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0
+  timingGroup: []
 --- !u!1 &1916272005
 GameObject:
   m_ObjectHideFlags: 0
