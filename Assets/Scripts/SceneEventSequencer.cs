@@ -30,6 +30,7 @@ public class SceneEventSequencer : MonoBehaviour
     public CameraShakeEvent cameraShakeEvent;
     public TrackGrooveEvent trackGrooveEvent;
     public ChangeBackgroundEvent changeBackgroundEvent;
+    public GlitchScreenEvent glitchScreenEvent;
 
     private Queue<SceneEvent> events = new Queue<SceneEvent>();
 
@@ -58,7 +59,7 @@ public class SceneEventSequencer : MonoBehaviour
         float secondsPerBeat = gc.GetSecondsPerBeat();
         float beatToSkipBegin = gc.GetBeatToSkipBegin();
 
-
+     
 
         events.Enqueue(new SceneEvent((48 + beatToSkipBegin) * secondsPerBeat + offset, () => { changeBackgroundEvent.Execute(1); }));
 
@@ -72,6 +73,7 @@ public class SceneEventSequencer : MonoBehaviour
             events.Enqueue(new SceneEvent((i + beatToSkipBegin) * secondsPerBeat + offset, cameraShakeEvent.Execute));
             events.Enqueue(new SceneEvent((i + beatToSkipBegin) * secondsPerBeat + secondsPerBeat/2 + offset, cameraShakeEvent.Execute));
         }
+        events.Enqueue(new SceneEvent((143 + beatToSkipBegin) * secondsPerBeat + offset, glitchScreenEvent.Execute));
 
         events.Enqueue(new SceneEvent((144 + beatToSkipBegin) * secondsPerBeat + offset, () => { changeBackgroundEvent.Execute(4); }));
         events.Enqueue(new SceneEvent((176 + beatToSkipBegin) * secondsPerBeat + offset, () => { trackGrooveEvent.Execute(true); }));
