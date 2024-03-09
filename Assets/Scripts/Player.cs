@@ -11,6 +11,13 @@ public class Player : MonoBehaviour
     private float zOffset = -0.95f;
     [SerializeField]
     int hitCount = 0;
+
+    private GameController gc;
+    public void Init(GameController gc)
+    {
+        this.gc = gc;
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -43,6 +50,7 @@ public class Player : MonoBehaviour
         {
             n.SetCollided();
             ++hitCount;
+            gc.TriggerHit(hitCount);
         }
     }
 }

@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
     public AudioSource audioSource;
     public SceneEventSequencer sceneEventSequencer;
+    public Player player;
+    public GameUI gameUI;
 
     public GameObject TrackBase; // parent
     public GameObject[] starts;
@@ -37,7 +40,7 @@ public class GameController : MonoBehaviour
 
     // Gameplay
     [SerializeField]
-    private float timeline = 0.0f;
+    private float timeline = 0.0f; // this gets sync with audio
     [SerializeField]
     private List<NoteBase> noteList = new List<NoteBase>();
     [SerializeField]
@@ -47,27 +50,34 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private float nextNoteTiming = 0.0f;
     private int previousRndNote = 0;
+    private float endTimeCounter = 0.0f;
+    private float endTime = 0.0f;
+    private int hitCount = 0;
 
     void Awake()
     {
         Application.targetFrameRate = 144;
-
+               PlayerPrefs.SetInt("HitCount", hitCount);
         // GenerateNote Info
         secondsPerBeat = 60f / (bpm);
         secondsPerBeat = secondsPerBeat / beatTempo;
         songTotalSeconds = audioSource.clip.length;
         beatCount = (int)(songTotalSeconds / secondsPerBeat) - beatToSkipBegin - beatToSkipEnd;
         GenerateNotes();
+        endTime = secondsPerBeat * 6;
 
         // Track note count
         nextNoteTiming = (beatToSkipBegin+1) * secondsPerBeat;
 
         sceneEventSequencer.Init(this);
         sceneEventSequencer.CreateSceneEvents();
+
+        player.Init(this);
     }
 
     private void Start()
     {
+        PlayerPrefs.SetInt("HitCount", 0);
         audioSource.Play();
     }
 
@@ -77,6 +87,20 @@ public class GameController : MonoBehaviour
         timeline += dt;
         SyncWithAudio();
         UpdateNoteIndex();
+        CheckGameEnd();
+
+        if(Input.GetKeyDown(KeyCode.F5))
+        {
+            SceneManager.LoadScene("Game");
+        }
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            SceneManager.LoadScene("Result");
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
     public float GetTime()
     {
@@ -84,13 +108,16 @@ public class GameController : MonoBehaviour
     }
     void SyncWithAudio()
     {
-        if(Mathf.Abs(audioSource.time - timeline) > tolleranceOffset)
+        if(!audioSource.isPlaying)
+        {
+            // don't sync
+        }
+        else if(Mathf.Abs(audioSource.time - timeline) > tolleranceOffset)
         {
             // Stupid simple sync assuming no big offset
             timeline = (audioSource.time + timeline) * 0.5f;
         }
     }
-
     void GenerateNotes()
     {
         int noteIndex = 0;
@@ -242,7 +269,6 @@ public class GameController : MonoBehaviour
             noteGobjList[i].SetActive(true);
         }
     }
-
     void UpdateNoteIndex()
     {
         if (timeline > nextNoteTiming)
@@ -261,4 +287,25 @@ public class GameController : MonoBehaviour
             }
         }
     }
+
+    void CheckGameEnd()
+    {
+        if(!audioSource.isPlaying)
+        {
+            float dt = Time.deltaTime;
+            endTimeCounter += dt;
+        }
+        if(endTimeCounter > endTime)
+        {
+            PlayerPrefs.SetInt("HitCount", hitCount);
+            SceneManager.LoadScene("Result");
+        }
+    }
+    public void TriggerHit(int hitCount)
+    {
+        this.hitCount = hitCount;
+        gameUI.PlayHitUI(hitCount);
+    }
+
+
 }
