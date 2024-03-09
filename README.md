@@ -1,4 +1,4 @@
-# Phase Shifter
+# Phase Shift
 Phase Shifter is a rhythm based bullet dodging game. <br />
 Contains a mix of genres and speed changes.
 
