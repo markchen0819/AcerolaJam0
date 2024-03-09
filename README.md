@@ -1,9 +1,12 @@
 # Phase Shift
-Phase Shifter is a rhythm based bullet dodging game. <br />
-Contains a mix of genres and speed changes.
+Phase Shift is a rhythm based bullet dodging game. <br />
+Contains a mix of genres and motion changes. <br />
+
+Mouse/ LeftArrow/ RightArrow to control <br />
+Esc to quit <br />
 
 Submission for Acerola Jam 0 <br />
-https://itch.io/jam/acerola-jam-0
+https://itch.io/jam/acerola-jam-0/rate/2573161
 
 ## Resources
 https://soundeffect-lab.info/sound/battle/ <br />
