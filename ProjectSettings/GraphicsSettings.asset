@@ -3,7 +3,7 @@
 --- !u!30 &1
 GraphicsSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 13
+  serializedVersion: 14
   m_Deferred:
     m_Mode: 1
     m_Shader: {fileID: 69, guid: 0000000000000000f000000000000000, type: 0}
@@ -28,6 +28,7 @@ GraphicsSettings:
   m_LensFlare:
     m_Mode: 1
     m_Shader: {fileID: 102, guid: 0000000000000000f000000000000000, type: 0}
+  m_VideoShadersIncludeMode: 2
   m_AlwaysIncludedShaders:
   - {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 15104, guid: 0000000000000000f000000000000000, type: 0}
@@ -35,9 +36,19 @@ GraphicsSettings:
   - {fileID: 15106, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10770, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 4800000, guid: 6d16e6cbb5b721c468614d6ff29c72c8, type: 3}
+  - {fileID: 4800000, guid: f0b119c797efcfd46bf8b267c6628530, type: 3}
+  - {fileID: 4800000, guid: cecc6f3652a540e4c89a32ad7a3e1274, type: 3}
+  - {fileID: 4800000, guid: f42a2c2682dc4ff48915f13003f3e52f, type: 3}
+  - {fileID: 4800000, guid: 22e1539af0579a7489b5ae131bedd324, type: 3}
+  - {fileID: 4800000, guid: a6eb1644451ff9b4691e72ede0b4695b, type: 3}
+  - {fileID: 4800000, guid: 923b9fa6ee516f5409da88b29df69492, type: 3}
+  - {fileID: 4800000, guid: 7851d786f3319f842b55dced760d4e86, type: 3}
+  - {fileID: 4800000, guid: b7f4feac8401062459d703cd59318823, type: 3}
+  - {fileID: 4800000, guid: d4f0d0ca7bd8f6d4ba56561e5f7a5fef, type: 3}
   m_PreloadedShaders: []
-  m_SpritesDefaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000,
-    type: 0}
+  m_PreloadShadersBatchTimeLimit: -1
+  m_SpritesDefaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_CustomRenderPipeline: {fileID: 0}
   m_TransparencySortMode: 0
   m_TransparencySortAxis: {x: 0, y: 0, z: 1}
@@ -59,5 +70,6 @@ GraphicsSettings:
   m_AlbedoSwatchInfos: []
   m_LightsUseLinearIntensity: 0
   m_LightsUseColorTemperature: 0
+  m_DefaultRenderingLayerMask: 1
   m_LogWhenShaderIsCompiled: 0
-  m_AllowEnlightenSupportForUpgradedProject: 0
+  m_SRPDefaultSettings: {}
